@@ -60,7 +60,7 @@ def run_check() -> None:
     for item in result:
         severity = IpaSeverity[item["result"]]
         check = f"{item['source']}.{item['check']}.{item['kw']['key']}"
-        msg = f"{check}: item['msg']"
+        msg = f"{check}: {item['kw']['msg']}"
 
         failures.append((severity, msg))
 
@@ -74,7 +74,7 @@ def run_check() -> None:
         nagios_result = IpaSeverity.WARNING
 
     sys.stdout.write("HEALTHCHECK ")
-    sys.stdout.write(str(nagios_result))
+    sys.stdout.write(nagios_result.name)
     sys.stdout.write(": ")
     sys.stdout.write(failures[0][1])
     sys.stdout.write("\n")
