@@ -31,6 +31,9 @@ Documentation = "https://github.com/benjunmun/nagios-ipa-healthcheck#readme"
 Issues = "https://github.com/benjunmun/nagios-ipa-healthcheck/issues"
 Source = "https://github.com/benjunmun/nagios-ipa-healthcheck"
 
+[project.scripts]
+check_ipa_healthcheck = "nagios_ipa_healthcheck.check:main"
+
 [tool.hatch.version]
 path = "nagios_ipa_healthcheck/__about__.py"
 
