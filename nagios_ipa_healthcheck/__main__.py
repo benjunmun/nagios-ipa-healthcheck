@@ -5,4 +5,3 @@
 from . import check
 
 check.main()
-

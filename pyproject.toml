@@ -66,4 +66,5 @@ exclude_lines = [
 [tool.ruff.lint]
 extend-ignore = [
     "SIM108", # Don't force ternary
+    "TID252", # Allow relative imports
 ]

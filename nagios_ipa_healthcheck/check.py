@@ -31,7 +31,7 @@ def main() -> None:
     except Exception as e:  # noqa: BLE001
         sys.stdout.write("HEALTHCHECK UNKNOWN:")
         sys.stdout.write(str(e))
-        sys.stdout.write('\n')
+        sys.stdout.write("\n")
         sys.exit(NagiosSeverity.UNKNOWN)
 
 
