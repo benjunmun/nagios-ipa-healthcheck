@@ -53,19 +53,8 @@ def run_check() -> None:
         sys.exit(NagiosSeverity.OK)
 
     # Something is wrong
-    result = json.loads(output.stdout)
-
     # Pull interesting data out - should be at least one failure here.
-    failures: list[tuple[IpaSeverity, str]] = []
-    for item in result:
-        severity = IpaSeverity[item["result"]]
-        check = f"{item['source']}.{item['check']}.{item['kw']['key']}"
-        msg = f"{check}: {item['kw']['msg']}"
-
-        failures.append((severity, msg))
-
-    # Sort by priority
-    failures.sort(reverse=True)
+    failures = parse_checks(output.stdout)
 
     max_sev = failures[0][0]
     if max_sev >= IpaSeverity.ERROR:
@@ -83,3 +72,36 @@ def run_check() -> None:
         sys.stdout.write("\n")
 
     sys.exit(int(nagios_result))
+
+
+def parse_checks(data: str) -> list[tuple[IpaSeverity, str]]:
+    """Parse the output of ipa-healthcheck.
+
+    Returns a list of failures, sorted by priority descending.
+
+    Each failure is reported as (severity, human-readable description)"""
+    result = json.loads(data)
+
+    failures: list[tuple[IpaSeverity, str]] = []
+    for item in result:
+        severity = IpaSeverity[item["result"]]
+
+        check = f"{item['source']}.{item['check']}"
+        if "key" in item["kw"]:
+            check += f".{item['kw']['key']}"
+
+        if "msg" in item["kw"]:
+            msg = f"{check}: {item['kw']['msg']}"
+        else:
+            msg = check
+
+        failures.append((severity, msg))
+
+    # Sort by priority
+    failures.sort(reverse=True)
+
+    return failures
+
+
+if __name__ == "__main__":
+    main()
