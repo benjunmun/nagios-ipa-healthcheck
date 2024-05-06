@@ -1,0 +1,47 @@
+[
+  {
+    "source": "ipahealthcheck.ipa.dna",
+    "check": "IPADNARangeCheck",
+    "result": "WARNING",
+    "uuid": "3aa5a4b0-11b0-4c6b-9ba5-bdb63a3f5839",
+    "when": "20200818204417Z",
+    "duration": "0.340740",
+    "kw": {
+      "range_start": 0,
+      "range_max": 0,
+      "next_start": 0,
+      "next_max": 0,
+      "msg": "No DNA range defined. If no masters define a range then users and groups cannot be created."
+    }
+  },
+  {
+    "source": "pki.server.healthcheck.meta.csconfig",
+    "check": "KRADogtagCertsConfigCheck",
+    "result": "ERROR",
+    "uuid": "b7fdb770-6c7d-4275-ab9a-6a928ce5966a",
+    "when": "20200821131201Z",
+    "duration": "0.053942",
+    "kw": {
+      "key": "kra_sslserver",
+      "nickname": "Server-Cert cert-pki-ca",
+      "directive": "kra.sslserver.cert",
+      "configfile": "/var/lib/pki/pki-tomcat/kra/conf/CS.cfg",
+      "msg": "Certificate 'Server-Cert cert-pki-ca' does not match the value of kra.sslserver.cert in /var/lib/pki/pki-tomcat/kra/conf/CS.cfg"
+    }
+  },
+  {
+    "source": "pki.server.healthcheck.meta.csconfig",
+    "check": "KRADogtagCertsConfigCheck",
+    "result": "ERROR",
+    "uuid": "c5c9a5c0-9972-4dd6-a879-1ecd22284398",
+    "when": "20200821131201Z",
+    "duration": "0.099739",
+    "kw": {
+      "key": "kra_subsystem",
+      "nickname": "subsystemCert cert-pki-ca",
+      "directive": "kra.subsystem.cert",
+      "configfile": "/var/lib/pki/pki-tomcat/kra/conf/CS.cfg",
+      "msg": "Certificate 'subsystemCert cert-pki-ca' does not match the value of kra.subsystem.cert in /var/lib/pki/pki-tomcat/kra/conf/CS.cfg"
+    }
+  }
+]
